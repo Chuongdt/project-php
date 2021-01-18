@@ -1,15 +1,12 @@
 <?php
 session_start();
-
-$user = $_SESSION['AUTH'];
-if($_SESSION['AUTH']){
-    if ($user['role'] != 1) {
-        header("Location:../home/home.php");
-    }
-    else{
+if ($_SESSION) {
+    if ($_SESSION['AUTH']['role'] == 1) {
         header("Location:../dashboard/index.php");
     }
-    die;
+    elseif($_SESSION['AUTH']['role'] == 0 && $_SESSION['AUTH']['role'] != ''){
+        header("Location:../home/home.php");
+    }
 }
 ?>
 <!DOCTYPE html>

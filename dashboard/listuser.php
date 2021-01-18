@@ -31,6 +31,7 @@ $userList = $stmt->fetchAll();
         <table class="table">
         <h1>Hello: <?php echo $_SESSION['AUTH']['name'] ?></h1>
         <div class="form-group">
+            <a href="../home/home.php" class="btn btn-primary">Home</a>
             <a href="product.php" class="btn btn-primary">Product</a>
             <a href="listuser.php" class="btn btn-success">List User</a>
             <a href="../login/login.php" class="btn btn-danger">Log out</a>

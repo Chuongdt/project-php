@@ -1,10 +1,7 @@
 <?php
 session_start();
+$guest = !$_SESSION;
 
-if (!$_SESSION['AUTH']) {
-    header("Location:../login/login.php");
-    die;
-}
 // kết nối CSDL
 require_once "./../connect.php";
 
@@ -52,10 +49,19 @@ $productList = $stmt->fetchAll();
 
 <body>
     <div class="container">
-        <h1>Hello: <?php echo $_SESSION['AUTH']['name'] ?></h1>
-        <div class="form-group">
-        <a href="../logout.php" class="btn btn-danger">Log out</a>
-        </div>
+        <?php if (!$_SESSION) {
+            echo 'vui long đăng nhập'.
+            '<div class="form-group">
+            <a href="../logout.php" class="btn btn-success">Login</a>
+            <a href="../register/register.php" class="btn btn-primary">Register</a>
+            </div>';
+        }
+        ?>
+        <h1><?php if ($_SESSION) { 
+            echo 'Hello:'.$_SESSION['AUTH']['name'].'<br/>'.'<a href="../logout.php" class="btn btn-danger">Log out</a>';
+        }
+        ?>
+        </h1>
         <div class="form-group list-new">
             <h1>Hàng Mới</h1>
             <div class="row">
